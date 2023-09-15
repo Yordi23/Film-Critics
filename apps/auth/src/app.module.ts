@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     ConfigModule.forRoot({
       envFilePath: `./apps/auth/.env`,
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
