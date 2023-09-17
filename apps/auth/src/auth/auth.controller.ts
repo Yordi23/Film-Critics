@@ -1,14 +1,19 @@
-import { Controller, Get, Inject } from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
+import { Body, Controller, Post } from '@nestjs/common';
+import { CreateUserDto } from '../user/dtos/create-user.dto';
+import { AuthService } from './auth.service';
+import { User } from '../user/user.entity';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
-  constructor(@Inject('AUTH_SERVICE') private client: ClientProxy) {}
+  constructor(
+    // @Inject('AUTH_SERVICE') private client: ClientProxy,
+    private readonly authService: AuthService,
+  ) {}
 
-  @Get()
-  createUser(): string {
-    this.client.emit<number>('user_created', { data: 'This is test payload' });
+  @Post('/register')
+  registerUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+    // this.client.emit<number>('user_created', { data: 'This is test payload' });
 
-    return 'Done';
+    return this.authService.registerUser(createUserDto);
   }
 }
