@@ -10,6 +10,7 @@ export class AuthService {
 
   async registerUser(createUserDto: CreateUserDto): Promise<User> {
     createUserDto.password = await bcrypt.hash(createUserDto.password, 12);
+    createUserDto.role = 'USER';
 
     return this.userService.create(createUserDto);
   }
