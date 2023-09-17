@@ -2,18 +2,20 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDto } from '../user/dtos/create-user.dto';
 import { AuthService } from './auth.service';
 import { User } from '../user/user.entity';
+import { SignInDto } from './dtos/sign-in.dto';
+import { SignedUserDto } from './dtos/signed-user.dto';
 
 @Controller()
 export class AuthController {
-  constructor(
-    // @Inject('AUTH_SERVICE') private client: ClientProxy,
-    private readonly authService: AuthService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
-  @Post('/register')
-  registerUser(@Body() createUserDto: CreateUserDto): Promise<User> {
-    // this.client.emit<number>('user_created', { data: 'This is test payload' });
+  @Post('/signup')
+  signUp(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.authService.signUp(createUserDto);
+  }
 
-    return this.authService.registerUser(createUserDto);
+  @Post('/signin')
+  signIn(@Body() signInDto: SignInDto): Promise<SignedUserDto> {
+    return this.authService.signIn(signInDto);
   }
 }
