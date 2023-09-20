@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dtos/create-user.dto';
 import * as bcrypt from 'bcryptjs';
@@ -6,6 +6,7 @@ import { User } from '../user/user.entity';
 import { SignInDto } from './dtos/sign-in.dto';
 import { JwtService } from '@nestjs/jwt';
 import { SignedUserDto } from './dtos/signed-user.dto';
+import { UserRoles } from '../user/enums/user-roles.enum';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
 
   async signUp(createUserDto: CreateUserDto): Promise<User> {
     createUserDto.password = await bcrypt.hash(createUserDto.password, 12);
-    createUserDto.role = 'USER';
+    createUserDto.role = UserRoles.USER;
 
     return this.userService.create(createUserDto);
   }
@@ -28,7 +29,7 @@ export class AuthService {
       !user ||
       !(await this.isValidPassword(signInDto.password, user.password))
     ) {
-      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+      throw new UnauthorizedException();
     }
 
     const payload = { email: user.email, id: user.id, role: user.role };
