@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FilmMember } from './film-member.entity';
 import { FilmMemberService } from './film-member.service';
-import { FilmMemberController } from './FilmMemberController';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { FilmMemberController } from './film-member.controller';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
   ],
-  providers: [FilmMemberService, ,],
+  providers: [FilmMemberService],
   controllers: [FilmMemberController],
   exports: [FilmMemberService],
 })
