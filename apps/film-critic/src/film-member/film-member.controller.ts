@@ -6,12 +6,18 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { FilmMember } from '../film-member/film-member.entity';
 import { FilmMemberService } from './film-member.service';
 import { UpdateFilmMemberDto } from './dtos/update-film-member.dto';
 import { CreateFilmMemberDto } from './dtos/create-film-member.dto';
+import { AuthGuard } from 'apps/auth/src/auth/guards/auth.guard';
+import { AuthorizedRoles } from 'apps/auth/src/auth/decorators/authorized-roles.decorator';
+import { RolesGuard } from 'apps/auth/src/auth/guards/roles.guard';
+import { UserRoles } from 'apps/auth/src/user/enums/user-roles.enum';
 
+@UseGuards(AuthGuard)
 @Controller('film-members')
 export class FilmMemberController {
   constructor(private readonly filmMemberService: FilmMemberService) {}
@@ -26,6 +32,9 @@ export class FilmMemberController {
     return this.filmMemberService.findOneById(id);
   }
 
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Post()
   create(
     @Body() createFilmMemberDto: CreateFilmMemberDto,
@@ -33,6 +42,9 @@ export class FilmMemberController {
     return this.filmMemberService.create(createFilmMemberDto);
   }
 
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -41,6 +53,9 @@ export class FilmMemberController {
     return this.filmMemberService.update(id, updateFilmMemberDto);
   }
 
+  @UseGuards(AuthGuard)
+  @UseGuards(RolesGuard)
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Delete(':id')
   delete(@Param('id') id: number): Promise<void> {
     return this.filmMemberService.delete(id);
