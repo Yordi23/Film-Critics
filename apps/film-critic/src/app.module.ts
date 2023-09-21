@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FilmMember } from './film-member/film-member.entity';
 import { FilmMemberModule } from './film-member/film-member.module';
+import { FilmModule } from './film/film.module';
+import { Film } from './film/film.entity';
 
 @Module({
   imports: [
@@ -17,10 +19,11 @@ import { FilmMemberModule } from './film-member/film-member.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [FilmMember],
+      entities: [FilmMember, Film],
       synchronize: true,
     }),
     FilmMemberModule,
+    FilmModule,
   ],
   controllers: [],
   providers: [],

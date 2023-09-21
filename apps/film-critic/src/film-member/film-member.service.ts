@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FilmMember } from './film-member.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateFilmMemberDto } from './dtos/create-film-member.dto';
 import { UpdateFilmMemberDto } from './dtos/update-film-member.dto';
 
@@ -31,6 +31,18 @@ export class FilmMemberService {
     }
 
     return filmMember;
+  }
+
+  async findByIds(ids: number[]): Promise<FilmMember[]> {
+    const filmMembers = await this.filmMembersRepository.findBy({
+      id: In(ids),
+    });
+
+    if (filmMembers.length !== ids.length) {
+      throw new NotFoundException('One or more film members not found');
+    }
+
+    return filmMembers;
   }
 
   async update(
