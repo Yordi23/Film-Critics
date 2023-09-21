@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateFilmDto } from './dtos/create-film.dto';
 import { UpdateFilmDto } from './dtos/update-film.dto';
 import { FilmMemberService } from '../film-member/film-member.service';
+import { FilmMember } from '../film-member/film-member.entity';
 
 @Injectable()
 export class FilmService {
@@ -58,23 +59,32 @@ export class FilmService {
   async update(id: number, updateFilmDto: UpdateFilmDto): Promise<Film> {
     const existingFilm = await this.findOneById(id);
 
-    let director = undefined,
-      cast = undefined;
+    let newDirector: FilmMember = undefined,
+      newCast: FilmMember[] = undefined;
 
-    try {
-      director = await this.filmMemberService.findOneById(
+    if (updateFilmDto.director) {
+      newDirector = await this.filmMemberService.findOneById(
         updateFilmDto.director,
       );
-    } catch (error) {}
+    }
 
-    try {
-      cast = await this.filmMemberService.findByIds(updateFilmDto.cast);
-    } catch (error) {}
+    if (updateFilmDto.cast) {
+      newCast = await this.filmMemberService.findByIds(updateFilmDto.cast);
+    }
+
+    const castToDict = updateFilmDto.cast.reduce(
+      (acc, curr) => ((acc[curr] = true), acc),
+      {},
+    );
+
+    existingFilm.cast = existingFilm.cast.filter((filmCast) => {
+      return castToDict[filmCast.id];
+    });
 
     this.filmRepository.merge(existingFilm, {
       ...updateFilmDto,
-      director,
-      cast,
+      director: newDirector,
+      cast: newCast,
     });
 
     return this.filmRepository.save(existingFilm);
