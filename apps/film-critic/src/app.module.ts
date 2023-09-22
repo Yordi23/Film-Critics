@@ -5,6 +5,10 @@ import { FilmMember } from './film-member/film-member.entity';
 import { FilmMemberModule } from './film-member/film-member.module';
 import { FilmModule } from './film/film.module';
 import { Film } from './film/film.entity';
+import { ReviewModule } from './review/review.module';
+import { Review } from './review/review.entity';
+import { User } from './user/user.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -19,11 +23,12 @@ import { Film } from './film/film.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [FilmMember, Film],
+      entities: [FilmMember, Film, User],
       synchronize: true,
     }),
     FilmMemberModule,
     FilmModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

@@ -19,9 +19,7 @@ export class UserController {
     @Body() updateUserDto: UpdateUserDto,
     @CurrentUser() user: JwtPayloadDto,
   ): Promise<User> {
-    updateUserDto.id = user.id;
-
-    return this.userService.update(updateUserDto);
+    return this.userService.update(user.id, updateUserDto);
   }
 
   @UseGuards(RolesGuard)
