@@ -32,8 +32,7 @@ export class FilmMemberController {
     return this.filmMemberService.findOneById(id);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Post()
   create(
@@ -42,8 +41,7 @@ export class FilmMemberController {
     return this.filmMemberService.create(createFilmMemberDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Put(':id')
   async update(
@@ -53,8 +51,7 @@ export class FilmMemberController {
     return this.filmMemberService.update(id, updateFilmMemberDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Delete(':id')
   delete(@Param('id') id: number): Promise<void> {

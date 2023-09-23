@@ -23,7 +23,7 @@ export class RolesGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
 
     if (!request.user || !request.user.role) {
-      throw new InternalServerErrorException();
+      throw new InternalServerErrorException('No user or user role defined.');
     }
 
     if (!this.isAuthorizedRole(request.user.role, authorizedRoles)) {

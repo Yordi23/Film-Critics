@@ -31,16 +31,14 @@ export class FilmController {
     return this.filmService.findOneById(id);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Post()
   create(@Body() createFilmDto: CreateFilmDto): Promise<Film> {
     return this.filmService.create(createFilmDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Put(':id')
   async update(
@@ -50,8 +48,7 @@ export class FilmController {
     return this.filmService.update(id, updateFilmDto);
   }
 
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @AuthorizedRoles(UserRoles.ADMIN)
   @Delete(':id')
   delete(@Param('id') id: number): Promise<void> {
