@@ -36,6 +36,7 @@ export class FilmService {
       relations: {
         cast: true,
         director: true,
+        reviews: true,
       },
     });
   }

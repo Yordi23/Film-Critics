@@ -5,8 +5,10 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { FilmMember } from '../film-member/film-member.entity';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class Film {
@@ -22,13 +24,16 @@ export class Film {
   @Column()
   year: number;
 
-  @ManyToOne(() => FilmMember, (filmMember) => filmMember.id)
+  @ManyToOne(() => FilmMember)
   director: FilmMember;
 
-  @ManyToMany(() => FilmMember, (filmMember) => filmMember.id)
+  @ManyToMany(() => FilmMember)
   @JoinTable()
   cast: FilmMember[];
 
   @Column()
   picture: string;
+
+  @OneToMany(() => Review, (review) => review.film)
+  reviews: Review[];
 }
