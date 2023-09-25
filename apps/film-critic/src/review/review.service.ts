@@ -1,7 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Review } from './review.entity';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { CreateReviewDto } from './dtos/create-review.dto';
 import { UpdateReviewDto } from './dtos/update-review.dto';
 import { FilmService } from '../film/film.service';
@@ -19,6 +23,15 @@ export class ReviewService {
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
     const film = await this.filmService.findOneById(createReviewDto.film);
+
+    const review = this.reviewsRepository.findOneBy({
+      author: Equal(createReviewDto.author),
+      film: Equal(createReviewDto.film),
+    });
+
+    if (review) {
+      throw new BadRequestException('User already has a review for this film.');
+    }
 
     const newReview = this.reviewsRepository.create({
       ...createReviewDto,
