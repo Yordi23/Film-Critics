@@ -6,7 +6,7 @@ import { User } from '../user/user.entity';
 import { SignInDto } from './dtos/sign-in.dto';
 import { JwtService } from '@nestjs/jwt';
 import { SignedUserDto } from './dtos/signed-user.dto';
-import { UserRoles } from '../user/enums/user-roles.enum';
+import { UserRoles } from 'apps/shared/enums/user-roles.enum';
 
 @Injectable()
 export class AuthService {

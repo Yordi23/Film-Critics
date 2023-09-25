@@ -1,9 +1,9 @@
 import { Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { EventPattern } from '@nestjs/microservices';
-import { CreatedUserEvent } from 'apps/auth/src/user/events/created-user.event';
-import { UpdatedUserEvent } from 'apps/auth/src/user/events/updated-user.event';
-import { DeletedUserEvent } from 'apps/auth/src/user/events/deleted-user.event';
+import { CreatedUserEvent } from 'apps/shared/events/created-user.event';
+import { UpdatedUserEvent } from 'apps/shared/events/updated-user.event';
+import { DeletedUserEvent } from 'apps/shared/events/deleted-user.event';
 
 @Controller()
 export class UserController {

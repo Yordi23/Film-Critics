@@ -2,12 +2,12 @@ import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { User } from '../user/user.entity';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { JwtPayloadDto } from '../auth/dtos/jwt-payload.dto';
-import { AuthGuard } from '../auth/guards/auth.guard';
-import { CurrentUser } from '../auth/decorators/current-user.decorator';
-import { RolesGuard } from '../auth/guards/roles.guard';
-import { AuthorizedRoles } from '../auth/decorators/authorized-roles.decorator';
-import { UserRoles } from './enums/user-roles.enum';
+import { AuthGuard } from 'apps/shared/guards/auth.guard';
+import { CurrentUser } from 'apps/shared/decorators/current-user.decorator';
+import { RolesGuard } from 'apps/shared/guards/roles.guard';
+import { AuthorizedRoles } from 'apps/shared/decorators/authorized-roles.decorator';
+import { UserRoles } from 'apps/shared/enums/user-roles.enum';
+import { JwtPayloadDto } from 'apps/shared/dtos/jwt-payload.dto';
 
 @UseGuards(AuthGuard)
 @Controller('users')

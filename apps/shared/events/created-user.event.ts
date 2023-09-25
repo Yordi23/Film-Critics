@@ -1,4 +1,4 @@
-import { User } from '../user.entity';
+import { User } from 'apps/auth/src/user/user.entity';
 
 export class CreatedUserEvent {
   constructor(user: User) {

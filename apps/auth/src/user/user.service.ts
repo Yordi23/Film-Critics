@@ -5,9 +5,9 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
-import { CreatedUserEvent } from './events/created-user.event';
-import { UpdatedUserEvent } from './events/updated-user.event';
-import { DeletedUserEvent } from './events/deleted-user.event';
+import { CreatedUserEvent } from 'apps/shared/events/created-user.event';
+import { UpdatedUserEvent } from 'apps/shared/events/updated-user.event';
+import { DeletedUserEvent } from 'apps/shared/events/deleted-user.event';
 
 @Injectable()
 export class UserService {
