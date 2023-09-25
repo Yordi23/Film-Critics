@@ -4,21 +4,13 @@ import { Film } from './film.entity';
 import { FilmService } from './film.service';
 import { FilmController } from './film.controller';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { FilmMemberModule } from '../film-member/film-member.module';
+import { jwtModuleConfig } from 'apps/shared/config/jwt-module.config';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Film]),
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        global: true,
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '60s' },
-      }),
-      inject: [ConfigService],
-    }),
+    JwtModule.registerAsync(jwtModuleConfig),
     FilmMemberModule,
   ],
   providers: [FilmService],
