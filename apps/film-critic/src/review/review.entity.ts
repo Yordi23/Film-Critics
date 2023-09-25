@@ -6,6 +6,8 @@ import {
   ManyToOne,
   BeforeInsert,
   BeforeUpdate,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Film } from '../film/film.entity';
 import { User } from '../user/user.entity';
@@ -35,6 +37,16 @@ export class Review {
 
   @Column({ default: 0 })
   dislikes: number;
+
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
+  updatedAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()

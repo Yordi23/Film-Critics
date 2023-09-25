@@ -6,6 +6,8 @@ import {
   ManyToMany,
   JoinTable,
   OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { FilmMember } from '../film-member/film-member.entity';
 import { Review } from '../review/review.entity';
@@ -36,4 +38,14 @@ export class Film {
 
   @OneToMany(() => Review, (review) => review.film)
   reviews: Review[];
+
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
+  updatedAt: Date;
 }
