@@ -47,8 +47,9 @@ export class ReviewController {
   async update(
     @Param('id') id: number,
     @Body() updateReviewDto: UpdateReviewDto,
+    @CurrentUser() user: JwtPayloadDto,
   ): Promise<Review> {
-    return this.reviewService.update(id, updateReviewDto);
+    return this.reviewService.update(id, updateReviewDto, { user });
   }
 
   @UseGuards(AuthGuard)
@@ -71,7 +72,10 @@ export class ReviewController {
 
   @UseGuards(AuthGuard)
   @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
-    return this.reviewService.delete(id);
+  delete(
+    @Param('id') id: number,
+    @CurrentUser() user: JwtPayloadDto,
+  ): Promise<void> {
+    return this.reviewService.delete(id, { user });
   }
 }

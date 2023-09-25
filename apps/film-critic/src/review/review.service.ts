@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { UpdateReviewDto } from './dtos/update-review.dto';
 import { FilmService } from '../film/film.service';
 import { UserService } from '../user/user.service';
 import { InteractionType } from './enum/interaction-type.enum';
+import { Context } from 'apps/shared/types/context';
 
 @Injectable()
 export class ReviewService {
@@ -22,9 +24,7 @@ export class ReviewService {
   ) {}
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
-    const film = await this.filmService.findOneById(createReviewDto.film);
-
-    const review = this.reviewsRepository.findOneBy({
+    const review = await this.reviewsRepository.findOneBy({
       author: Equal(createReviewDto.author),
       film: Equal(createReviewDto.film),
     });
@@ -33,6 +33,7 @@ export class ReviewService {
       throw new BadRequestException('User already has a review for this film.');
     }
 
+    const film = await this.filmService.findOneById(createReviewDto.film);
     const newReview = this.reviewsRepository.create({
       ...createReviewDto,
       film,
@@ -43,11 +44,14 @@ export class ReviewService {
   }
 
   findAll(): Promise<Review[]> {
-    return this.reviewsRepository.find();
+    return this.reviewsRepository.find({ relations: { author: true } });
   }
 
   async findOneById(id: number): Promise<Review> {
-    const review = await this.reviewsRepository.findOneBy({ id });
+    const review = await this.reviewsRepository.findOne({
+      where: { id },
+      relations: { author: true },
+    });
 
     if (!review) {
       throw new NotFoundException('Review not found');
@@ -56,8 +60,18 @@ export class ReviewService {
     return review;
   }
 
-  async update(id: number, updateReviewDto: UpdateReviewDto): Promise<Review> {
+  async update(
+    id: number,
+    updateReviewDto: UpdateReviewDto,
+    ctx: Context,
+  ): Promise<Review> {
     const review = await this.findOneById(id);
+
+    if (review.author.id !== ctx.user.id) {
+      throw new ForbiddenException(
+        "User is only able to modify it's own reviews",
+      );
+    }
 
     return this._update(review, updateReviewDto);
   }
@@ -112,7 +126,14 @@ export class ReviewService {
     return this._update(review, updateDto);
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: number, ctx: Context): Promise<void> {
+    const review = await this.findOneById(id);
+
+    if (review.author.id !== ctx.user.id) {
+      throw new ForbiddenException(
+        "User is only able to modify it's own reviews",
+      );
+    }
     await this.reviewsRepository.delete(id);
   }
 }
