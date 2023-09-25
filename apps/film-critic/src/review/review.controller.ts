@@ -52,6 +52,24 @@ export class ReviewController {
   }
 
   @UseGuards(AuthGuard)
+  @Post(':id/like')
+  async like(
+    @Param('id') id: number,
+    @CurrentUser() user: JwtPayloadDto,
+  ): Promise<Review> {
+    return this.reviewService.like(id, user.id);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post(':id/dislike')
+  async dislike(
+    @Param('id') id: number,
+    @CurrentUser() user: JwtPayloadDto,
+  ): Promise<Review> {
+    return this.reviewService.dislike(id, user.id);
+  }
+
+  @UseGuards(AuthGuard)
   @Delete(':id')
   delete(@Param('id') id: number): Promise<void> {
     return this.reviewService.delete(id);

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Review } from '../review/review.entity';
 
 @Entity()
 export class User {
@@ -13,4 +14,12 @@ export class User {
 
   @Column()
   profilePicture: string;
+
+  @ManyToMany(() => Review)
+  @JoinTable()
+  likedReviews: Review[];
+
+  @ManyToMany(() => Review)
+  @JoinTable()
+  dislikedReviews: Review[];
 }

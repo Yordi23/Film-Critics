@@ -4,7 +4,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
-  ManyToMany,
   BeforeInsert,
   BeforeUpdate,
 } from 'typeorm';
@@ -31,11 +30,11 @@ export class Review {
   @ManyToOne(() => Film, (film) => film.reviews)
   film: Film;
 
-  @ManyToMany(() => User)
-  likes: Film;
+  @Column({ default: 0 })
+  likes: number;
 
-  @ManyToMany(() => User)
-  dislikes: Film;
+  @Column({ default: 0 })
+  dislikes: number;
 
   @BeforeInsert()
   @BeforeUpdate()

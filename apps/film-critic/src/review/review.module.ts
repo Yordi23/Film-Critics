@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ReviewController } from './review.controller';
 import { FilmModule } from '../film/film.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { FilmModule } from '../film/film.module';
       inject: [ConfigService],
     }),
     FilmModule,
+    UserModule,
   ],
   providers: [ReviewService],
   controllers: [ReviewController],
