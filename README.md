@@ -1,4 +1,4 @@
-<img src="" width="100%" max-width="720px">
+![Film Critics Logo](resourses/film-critics-logo.png)
 
 # Film Critics
 
