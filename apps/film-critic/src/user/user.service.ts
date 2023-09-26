@@ -45,7 +45,7 @@ export class UserService {
   }
 
   async delete(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+    await this.usersRepository.softDelete(id);
   }
 
   async addLikedReview(user: User, review: Review): Promise<User> {

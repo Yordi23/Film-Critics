@@ -6,6 +6,7 @@ import {
   JoinTable,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { Review } from '../review/review.entity';
 
@@ -40,4 +41,7 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  deletedAt: Date;
 }

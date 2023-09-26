@@ -8,6 +8,7 @@ import {
   BeforeUpdate,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { Film } from '../film/film.entity';
 import { User } from '../user/user.entity';
@@ -47,6 +48,9 @@ export class Review {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  deletedAt: Date;
 
   @BeforeInsert()
   @BeforeUpdate()

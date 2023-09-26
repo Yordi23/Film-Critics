@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -26,4 +27,7 @@ export class FilmMember {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  deletedAt: Date;
 }

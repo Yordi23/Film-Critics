@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { UserRoles } from 'apps/shared/enums/user-roles.enum';
 
@@ -36,4 +37,7 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  deletedAt: Date;
 }

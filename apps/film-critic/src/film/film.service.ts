@@ -92,6 +92,6 @@ export class FilmService {
   }
 
   async delete(id: number): Promise<void> {
-    await this.filmRepository.delete(id);
+    await this.filmRepository.softDelete(id);
   }
 }

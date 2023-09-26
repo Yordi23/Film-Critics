@@ -134,6 +134,6 @@ export class ReviewService {
         "User is only able to modify it's own reviews",
       );
     }
-    await this.reviewsRepository.delete(id);
+    await this.reviewsRepository.softDelete(id);
   }
 }

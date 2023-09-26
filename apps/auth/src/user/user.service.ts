@@ -60,7 +60,7 @@ export class UserService {
   }
 
   async delete(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+    await this.usersRepository.softDelete(id);
 
     this.client.emit(EventNames.DELETED_USER, new DeletedUserEvent(id));
   }

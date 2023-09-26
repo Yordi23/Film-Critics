@@ -8,6 +8,7 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { FilmMember } from '../film-member/film-member.entity';
 import { Review } from '../review/review.entity';
@@ -41,6 +42,9 @@ export class Film {
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
+
+  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  deletedAt: Date;
 
   @UpdateDateColumn({
     type: 'timestamp',
