@@ -12,16 +12,24 @@ This is a personal project intented mainly to update my professional portafolio 
 
 ## Trying out the API
 
-### On your local machine
-
 ## What's the stack used in this project?
+
+- **[Nest.js](https://nestjs.com/)** is a [TypeScript](https://www.typescriptlang.org/)-based Node.js API framework for building efficient, scalable server-side applications.
+- **[Postgres](https://www.postgresql.org/)** a very well known open source object-relational database system.
+- **[TypeORM](https://typeorm.io/)** is an ORM built on [TypeScript](https://www.typescriptlang.org/).
+- **[Nats](https://nats.io/)** offers a lightweight, scalable, and efficient messaging system for building distributed applications.
+- **[Nodemailer](https://nodemailer.com/)** is a Node.js module that allows you to send emails from your server with ease.
+
+## Architecture
+
+![Film Critics Architecture](resourses/film-critics-architecture.png)
 
 ## Current version
 
 ### 0.9.0
 
-What's missing?
+**What's missing?**
 
 - Wide unit tests coverage with mocked up dependencies.
 - Improved and more extensive validations.
-- Add database transactions to certain operations
+- Add database transactions to certain operations.
