@@ -8,6 +8,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { CreatedUserEvent } from 'apps/shared/events/created-user.event';
 import { UpdatedUserEvent } from 'apps/shared/events/updated-user.event';
 import { DeletedUserEvent } from 'apps/shared/events/deleted-user.event';
+import { EventNames } from 'apps/shared/enums/event-names.enum';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,7 @@ export class UserService {
     const newUser = this.usersRepository.create(createUserDto);
 
     const savedUser = await this.usersRepository.save(newUser);
-    this.client.emit('created_user', new CreatedUserEvent(savedUser));
+    this.client.emit(EventNames.CREATED_USER, new CreatedUserEvent(savedUser));
 
     return savedUser;
   }
@@ -50,7 +51,10 @@ export class UserService {
 
     const updatedUser = await this.usersRepository.save(existingUser);
 
-    this.client.emit('updated_user', new UpdatedUserEvent(updatedUser));
+    this.client.emit(
+      EventNames.UPDATED_USER,
+      new UpdatedUserEvent(updatedUser),
+    );
 
     return updatedUser;
   }
@@ -58,6 +62,6 @@ export class UserService {
   async delete(id: number): Promise<void> {
     await this.usersRepository.delete(id);
 
-    this.client.emit('deleted_user', new DeletedUserEvent(id));
+    this.client.emit(EventNames.DELETED_USER, new DeletedUserEvent(id));
   }
 }
