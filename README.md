@@ -1,6 +1,6 @@
-![Film Critics Logo](resourses/film-critics-logo.png)
-
-# Film Critics
+<div align="center">
+  <img src="resourses/film-critics-logo.png" alt="Film Critics Logo">
+</div>
 
 ## What's Film Critics?
 
@@ -22,7 +22,9 @@ This is a personal project intented mainly to update my professional portafolio 
 
 ## Architecture
 
-![Film Critics Architecture](resourses/film-critics-architecture.png)
+<div align="center">
+  <img src="resourses/film-critics-architecture.png" alt="Film Critics Architecture">
+</div>
 
 ## Current version
 
