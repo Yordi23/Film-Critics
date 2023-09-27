@@ -1,0 +1,79 @@
+version: '3.8'
+services:
+  auth-service:
+    container_name: 'auth-service'
+    restart: 'always'
+    build:
+      target: auth
+      context: .
+    networks:
+      - api-gateway-network
+    depends_on:
+      - postgres
+      - nats
+      - nginx-api-gateway
+    ports:
+      - '4000:3000'
+    env_file: ./env/auth.env
+
+  film-critic-service:
+    container_name: 'film-critic-service'
+    restart: 'always'
+    build:
+      target: film-critic
+      context: .
+    networks:
+      - api-gateway-network
+    depends_on:
+      - postgres
+      - nats
+      - nginx-api-gateway
+    ports:
+      - '4001:3000'
+    env_file: ./env/film-critic.env
+
+  notification-service:
+    container_name: 'notification-service'
+    restart: 'always'
+    build:
+      target: notification
+      context: .
+    networks:
+      - api-gateway-network
+    depends_on:
+      - postgres
+      - nats
+      - nginx-api-gateway
+    ports:
+      - '4002:3000'
+    env_file: ./env/notification.env
+
+  postgres:
+    image: postgres:latest
+    container_name: 'film-critics-postgres'
+    networks:
+      - api-gateway-network
+    env_file: ./postgres/postgres.env
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  nats:
+    image: nats:latest
+    container_name: 'film-critics-nats'
+    networks:
+      - api-gateway-network
+
+  nginx-api-gateway:
+    container_name: 'film-critics-api-gateway'
+    build:
+      context: ./nginx-config
+    ports:
+      - '80:80'
+    networks:
+      - api-gateway-network
+
+networks:
+  api-gateway-network:

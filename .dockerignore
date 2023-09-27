@@ -1,0 +1,16 @@
+
+# Node Js files
+node_modules
+dist
+*/dist
+
+# Test files
+test
+**/*.spec.ts
+
+# Config files
+.git
+.vscode
+.github
+docs
+
