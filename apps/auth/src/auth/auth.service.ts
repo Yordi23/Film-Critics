@@ -29,7 +29,7 @@ export class AuthService {
       !user ||
       !(await this.isValidPassword(signInDto.password, user.password))
     ) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     const payload = { email: user.email, id: user.id, role: user.role };

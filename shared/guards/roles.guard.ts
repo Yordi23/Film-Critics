@@ -27,7 +27,7 @@ export class RolesGuard implements CanActivate {
     }
 
     if (!this.isAuthorizedRole(request.user.role, authorizedRoles)) {
-      throw new ForbiddenException();
+      throw new ForbiddenException('User role not authorized');
     }
 
     return true;
