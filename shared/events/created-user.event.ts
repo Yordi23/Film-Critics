@@ -1,7 +1,7 @@
-import { User } from 'apps/auth/src/user/user.entity';
+import { UserDto } from 'shared/dtos/user.dto';
 
 export class CreatedUserEvent {
-  constructor(user: User) {
+  constructor(user: UserDto) {
     this.id = user.id;
     this.name = user.name;
     this.email = user.email;

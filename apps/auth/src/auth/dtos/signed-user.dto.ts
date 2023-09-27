@@ -1,4 +1,4 @@
-import { UserDto } from '../../user/dtos/user.dto';
+import { UserDto } from 'shared/dtos/user.dto';
 
 export class SignedUserDto {
   user: UserDto;
