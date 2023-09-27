@@ -69,7 +69,7 @@ services:
   nginx-api-gateway:
     container_name: 'film-critics-api-gateway'
     build:
-      context: ./nginx-config
+      context: ./nginx
     ports:
       - '80:80'
     networks:
