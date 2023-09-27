@@ -13,7 +13,7 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `./apps/film-critic/.env`,
+      envFilePath: `./env/film-critic.env`,
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({

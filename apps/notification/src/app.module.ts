@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `./apps/notification/.env`,
+      envFilePath: `./env/notification.env`,
       isGlobal: true,
     }),
     EmailModule,
