@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
-import { EventNames } from 'apps/shared/enums/event-names.enum';
-import { CreatedUserEvent } from 'apps/shared/events/created-user.event';
+import { EventNames } from 'shared/enums/event-names.enum';
+import { CreatedUserEvent } from 'shared/events/created-user.event';
 import { EmailService } from './email.service';
 
 @Controller()

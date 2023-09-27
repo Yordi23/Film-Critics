@@ -5,7 +5,7 @@ import { FilmService } from './film.service';
 import { FilmController } from './film.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { FilmMemberModule } from '../film-member/film-member.module';
-import { jwtModuleConfig } from 'apps/shared/config/jwt-module.config';
+import { jwtModuleConfig } from 'shared/config/jwt-module.config';
 
 @Module({
   imports: [

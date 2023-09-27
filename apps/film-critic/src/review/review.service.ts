@@ -12,7 +12,7 @@ import { UpdateReviewDto } from './dtos/update-review.dto';
 import { FilmService } from '../film/film.service';
 import { UserService } from '../user/user.service';
 import { InteractionType } from './enum/interaction-type.enum';
-import { Context } from 'apps/shared/types/context';
+import { Context } from 'shared/types/context';
 
 @Injectable()
 export class ReviewService {

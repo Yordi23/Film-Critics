@@ -6,7 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ReviewController } from './review.controller';
 import { FilmModule } from '../film/film.module';
 import { UserModule } from '../user/user.module';
-import { jwtModuleConfig } from 'apps/shared/config/jwt-module.config';
+import { jwtModuleConfig } from 'shared/config/jwt-module.config';
 
 @Module({
   imports: [

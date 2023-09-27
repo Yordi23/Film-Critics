@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
-import { UserRoles } from 'apps/shared/enums/user-roles.enum';
+import { UserRoles } from 'shared/enums/user-roles.enum';
 
 @Entity()
 export class User {

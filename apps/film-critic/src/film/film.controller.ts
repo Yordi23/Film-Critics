@@ -12,10 +12,10 @@ import { Film } from '../film/film.entity';
 import { FilmService } from './film.service';
 import { CreateFilmDto } from './dtos/create-film.dto';
 import { UpdateFilmDto } from './dtos/update-film.dto';
-import { AuthGuard } from 'apps/shared/guards/auth.guard';
-import { RolesGuard } from 'apps/shared/guards/roles.guard';
-import { AuthorizedRoles } from 'apps/shared/decorators/authorized-roles.decorator';
-import { UserRoles } from 'apps/shared/enums/user-roles.enum';
+import { AuthGuard } from 'shared/guards/auth.guard';
+import { RolesGuard } from 'shared/guards/roles.guard';
+import { AuthorizedRoles } from 'shared/decorators/authorized-roles.decorator';
+import { UserRoles } from 'shared/enums/user-roles.enum';
 
 @Controller('films')
 export class FilmController {

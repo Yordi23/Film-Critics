@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { jwtModuleConfig } from 'apps/shared/config/jwt-module.config';
+import { jwtModuleConfig } from 'shared/config/jwt-module.config';
 
 @Module({
   imports: [

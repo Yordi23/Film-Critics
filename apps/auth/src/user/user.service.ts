@@ -5,10 +5,10 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { ClientProxy } from '@nestjs/microservices';
-import { CreatedUserEvent } from 'apps/shared/events/created-user.event';
-import { UpdatedUserEvent } from 'apps/shared/events/updated-user.event';
-import { DeletedUserEvent } from 'apps/shared/events/deleted-user.event';
-import { EventNames } from 'apps/shared/enums/event-names.enum';
+import { CreatedUserEvent } from 'shared/events/created-user.event';
+import { UpdatedUserEvent } from 'shared/events/updated-user.event';
+import { DeletedUserEvent } from 'shared/events/deleted-user.event';
+import { EventNames } from 'shared/enums/event-names.enum';
 
 @Injectable()
 export class UserService {

@@ -12,9 +12,9 @@ import { Review } from '../review/review.entity';
 import { ReviewService } from './review.service';
 import { UpdateReviewDto } from './dtos/update-review.dto';
 import { CreateReviewDto } from './dtos/create-review.dto';
-import { AuthGuard } from 'apps/shared/guards/auth.guard';
-import { CurrentUser } from 'apps/shared/decorators/current-user.decorator';
-import { JwtPayloadDto } from 'apps/shared/dtos/jwt-payload.dto';
+import { AuthGuard } from 'shared/guards/auth.guard';
+import { CurrentUser } from 'shared/decorators/current-user.decorator';
+import { JwtPayloadDto } from 'shared/dtos/jwt-payload.dto';
 
 @UseGuards(AuthGuard)
 @Controller('reviews')
