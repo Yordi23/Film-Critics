@@ -43,7 +43,7 @@ export class Film {
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  @DeleteDateColumn({ type: 'timestamptz', default: null, select: false })
   deletedAt: Date;
 
   @UpdateDateColumn({

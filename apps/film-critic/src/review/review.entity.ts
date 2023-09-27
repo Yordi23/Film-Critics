@@ -49,7 +49,7 @@ export class Review {
   })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamptz', default: null })
+  @DeleteDateColumn({ type: 'timestamptz', default: null, select: false })
   deletedAt: Date;
 
   @BeforeInsert()
