@@ -26,6 +26,10 @@ This is a personal project intented mainly to update my professional portafolio 
   <img src="resourses/film-critics-architecture.png" alt="Film Critics Architecture">
 </div>
 
+## API Documentation
+
+[Postman API Documentation](https://documenter.getpostman.com/view/10986690/2s9YJXakff)
+
 ## Current version
 
 ### 0.9.0
