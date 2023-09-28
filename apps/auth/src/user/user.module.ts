@@ -6,20 +6,27 @@ import { UserController } from './user.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { jwtModuleConfig } from 'shared/config/jwt-module.config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync(jwtModuleConfig),
-    ClientsModule.register([
-      {
-        name: 'AUTH_SERVICE',
-        transport: Transport.NATS,
-        options: {
-          servers: ['nats://localhost:4222'],
+    ClientsModule.registerAsync({
+      clients: [
+        {
+          imports: [ConfigModule],
+          name: 'AUTH_SERVICE',
+          useFactory: async (configService: ConfigService) => ({
+            transport: Transport.NATS,
+            options: {
+              servers: [configService.get<string>('NATS_HOST')],
+            },
+          }),
+          inject: [ConfigService],
         },
-      },
-    ]),
+      ],
+    }),
   ],
   providers: [UserService],
   controllers: [UserController],
