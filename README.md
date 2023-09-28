@@ -25,7 +25,7 @@ To get started with Film Critics, follow these steps:
 
 1. Create the following files inside the `.env` folder: `auth.env`, `film-critic.env`, `notification.env`, and the `postgres.env` file inside the `postgres` folder.
 2. Copy the default values from the corresponding `.env.example` files to their respective `.env` files.
-3. Fill in the empty fields with your preferred values. Note that the `DB_USER` and `DB_PASSWORD` fields must match the `POSTGRES_USER` and `POSTGRES_PASSWORD` fields, respectively.
+3. Fill in the empty fields with your preferred values. Note that the `DB_USER` and `DB_PASSWORD` fields must match the `POSTGRES_USER` and `POSTGRES_PASSWORD` fields, respectively. Regarding the email-related fields, you can place your preferred SMTP server credentials, I personally use [MailTrap](https://mailtrap.io/) for quick and easy testing.
 4. If you don't have Docker installed, you can download it from [here](https://docs.docker.com/).
 5. Run the `docker-compose up` command to start the application. The API will be accessible at http://localhost:80.
 
