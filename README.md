@@ -29,6 +29,15 @@ To get started with Film Critics, follow these steps:
 4. If you don't have Docker installed, you can download it from [here](https://docs.docker.com/).
 5. Run the `docker-compose up` command to start the application. The API will be accessible at http://localhost:80.
 
+An admin user is automatically created on startup, for testing purposes. Credentials:
+
+```
+{
+    "email": "admin@email.com",
+    "password": "admin1234"
+}
+```
+
 ## Technology Stack
 
 - **[Nest.js](https://nestjs.com/)**: a [TypeScript](https://www.typescriptlang.org/)-based Node.js API framework for building efficient, scalable server-side applications.
