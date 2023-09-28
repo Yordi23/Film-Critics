@@ -12,8 +12,8 @@ This is a personal project intented mainly to update my professional portafolio 
 
 ## How to use it
 
-1. Create the `auth.env`, `film-critic.env`, `notification.env` files inside the `.env` folder. Copy the default values from each one of the `.env.example` files to it's corresponding `.env` file and fill the empty ones with your prefered values.
-2. Install [Docker](https://docs.docker.com/) if you don't have it already , run the `docker-compose up --build` command. The API will be listening for your requests at http://localhost:80.
+1. Create the `auth.env`, `film-critic.env`, `notification.env` files inside the `.env` folder, and the `postgres.env` file inside the `postgres` folder. Copy the default values from each one of the `.env.example` files to it's corresponding `.env` file and fill the empty fields with your prefered values.
+2. Install [Docker](https://docs.docker.com/) if you don't have it already , run the `docker-compose up` command. The API will be listening for your requests at http://localhost:80.
 
 ## What's the stack used in this project?
 
