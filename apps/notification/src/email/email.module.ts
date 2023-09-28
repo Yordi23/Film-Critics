@@ -25,7 +25,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
           replyTo: config.get('MAIL_REPLY_TO'),
         },
         template: {
-          dir: join(__dirname, 'templates'),
+          dir: join(process.cwd(), 'dist/apps/notification/email/templates'),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,

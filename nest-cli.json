@@ -6,7 +6,14 @@
   "root": "apps/film-critic",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/film-critic/tsconfig.app.json"
+    "tsConfigPath": "apps/film-critic/tsconfig.app.json",
+    "assets": [
+      {
+        "include": "**/*.hbs",
+        "outDir": "dist/apps/notification"
+      }
+    ],
+    "watchAssets": true
   },
   "projects": {
     "film-critic": {
