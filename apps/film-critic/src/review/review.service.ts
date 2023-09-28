@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   ForbiddenException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -13,6 +14,9 @@ import { FilmService } from '../film/film.service';
 import { UserService } from '../user/user.service';
 import { InteractionType } from './enum/interaction-type.enum';
 import { Context } from 'shared/types/context';
+import { ClientProxy } from '@nestjs/microservices';
+import { EventNames } from 'shared/enums/event-names.enum';
+import { LikedReviewEvent } from 'shared/events/liked-review';
 
 @Injectable()
 export class ReviewService {
@@ -21,6 +25,7 @@ export class ReviewService {
     private reviewsRepository: Repository<Review>,
     private filmService: FilmService,
     private userService: UserService,
+    @Inject('FILM_CRITIC_SERVICE') private client: ClientProxy,
   ) {}
 
   async create(createReviewDto: CreateReviewDto): Promise<Review> {
@@ -50,7 +55,7 @@ export class ReviewService {
   async findOneById(id: number): Promise<Review> {
     const review = await this.reviewsRepository.findOne({
       where: { id },
-      relations: { author: true },
+      relations: { author: true, film: true },
     });
 
     if (!review) {
@@ -85,7 +90,18 @@ export class ReviewService {
   }
 
   async like(id: number, userId: number): Promise<Review> {
-    return this.likeOrDislike(id, userId, InteractionType.LIKE);
+    const updatedReview = await this.likeOrDislike(
+      id,
+      userId,
+      InteractionType.LIKE,
+    );
+
+    this.client.emit(
+      EventNames.LIKED_REVIEW,
+      new LikedReviewEvent(updatedReview),
+    );
+
+    return updatedReview;
   }
 
   async dislike(id: number, userId: number): Promise<Review> {

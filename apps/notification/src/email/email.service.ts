@@ -1,6 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { WelcomeEmailDto } from './dtos/welcome-email.dto';
+import { LikedReviewDto } from './dtos/liked-review.dto';
 
 @Injectable()
 export class EmailService {
@@ -14,6 +15,21 @@ export class EmailService {
       context: {
         name: welcomeEmailDto.name,
         profilePicture: welcomeEmailDto.profilePicture,
+      },
+    });
+  }
+
+  public async sendLikedReviewEmail(likedReviewDto: LikedReviewDto) {
+    await this.mailerService.sendMail({
+      to: likedReviewDto.email,
+      subject: 'Review Liked - Film Critics',
+      template: './liked-review',
+      context: {
+        name: likedReviewDto.name,
+        profilePicture: likedReviewDto.profilePicture,
+        reviewBody: likedReviewDto.reviewBody,
+        likes: likedReviewDto.likes,
+        filmName: likedReviewDto.filmName,
       },
     });
   }

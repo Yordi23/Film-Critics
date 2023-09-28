@@ -1,0 +1,73 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Film Critics - Review Liked</title>
+    <style>
+      body { font-family: Arial, sans-serif; background-color: #f2f2f2; margin:
+      0; padding: 0; } .introduction-message { background-color: #fff; color:
+      #333; padding: 5px; } .container { max-width: 600px; margin: 0 auto;
+      padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0px
+      0px 10px rgba(0, 0, 0, 0.1); } .header { background-color: #333; color:
+      #f04b37; padding: 20px 0; text-align: center; border-radius: 5px 5px 0 0;
+      } .header h1 { font-size: 28px; margin: 0; } .review-card { border: 2px
+      solid #f04b37; padding: 20px; border-radius: 5px; margin: 20px 0; }
+      .review-card-content { display: flex; align-items: center;
+      justify-content: space-between; } .review-card-image { width: 100px;
+      height: 100px; border-radius: 50%; margin-right: 20px; } .review-card-text
+      { flex-grow: 1; } .review-card-text p { font-size: 16px; line-height: 1.6;
+      margin: 0; } .review-likes { font-size: 13px; color: #f04b37; font-weight:
+      bold; text-align: right; } .like-icon { font-size: 24px; margin-right:
+      5px; } .user-info { text-align: center; margin-top: 20px; } .user-name {
+      font-size: 20px; color: #f04b37; margin: 0; } .film-name { font-size:
+      15px; margin: 0; font-style: italic; } .profile-image { width: 100px;
+      height: 100px; border-radius: 50%; margin: 20px 0; } .button-container {
+      margin-bottom: 30px; text-align: center; margin-top: 30px; }
+      .action-button { background-color: #f04b37; color: #fff; border: none;
+      padding: 10px 20px; font-size: 18px; border-radius: 5px; text-decoration:
+      none; cursor: pointer; transition: background-color 0.3s ease; }
+      .action-button:hover { background-color: #cd665a; } .footer {
+      background-color: #333; color: #fff; text-align: center; padding: 10px 0;
+      border-radius: 0 0 5px 5px; } .footer p { font-size: 14px; margin: 0; }
+    </style>
+  </head>
+  <body>
+    <div class='container'>
+      <div class='header'>
+        <h1>Film Critics - Review Liked</h1>
+      </div>
+      <div class='introduction-message'>
+        <p>
+          Hi
+          <span class='user-name'>{{name}}</span>! Your review for the film "<span
+            class='film-name'
+          >{{filmName}}</span>" has received a new like!
+        </p>
+      </div>
+      <div class='review-card'>
+        <div class='review-card-content'>
+          <img
+            class='review-card-image'
+            src='{{profilePicture}}'
+            alt='Profile Picture'
+          />
+          <div class='review-card-text'>
+            <p>{{reviewBody}}</p>
+          </div>
+        </div>
+        <div class='review-likes'>
+          <span class='like-icon'>&#128077;</span>
+          {{likes}}
+          Likes
+        </div>
+      </div>
+
+      <div class='button-container'>
+        <a class='action-button' href='#'>View Your Review</a>
+      </div>
+      <div class='footer'>
+        <p>&copy; 2023 Film Critics. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
