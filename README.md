@@ -17,7 +17,7 @@ Film Critics offers the following core functionalities:
 
 ## Motivation
 
-This is a personal project intented mainly to update my professional portafolio and showcase my domain knowledge of backend development.
+This is a personal project intended mainly to update my professional portfolio and showcase my domain of knowledge on backend development.
 
 ## How to use it?
 
