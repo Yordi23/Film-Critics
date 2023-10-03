@@ -45,6 +45,7 @@ An admin user is automatically created on startup, for testing purposes. Credent
 - **[TypeORM](https://typeorm.io/)**: an ORM built on [TypeScript](https://www.typescriptlang.org/).
 - **[Nats](https://nats.io/)**: a lightweight, scalable, and efficient messaging system for building distributed applications.
 - **[Nodemailer](https://nodemailer.com/)**: a Node.js module that allows you to send emails from your server with ease.
+- **[Jest](https://jestjs.io/)**: a popular open-source testing framework built for JavaScript.
 
 ## Architecture
 
