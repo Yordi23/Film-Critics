@@ -9,6 +9,7 @@ import { MockType } from 'shared/testing/mock.type';
 import { generateFakeUser } from 'shared/testing/fake/user.fake';
 import { SignInDto } from './dtos/sign-in.dto';
 import { UnauthorizedException } from '@nestjs/common';
+import { generateFakeCreateUserDto } from '../user/testing/create-user.dto.fake';
 
 // Cannot use const because, of the way the mocks are initialized, it will not recognize this variable
 // eslint-disable-next-line prefer-const
@@ -65,13 +66,7 @@ describe('AuthService', () => {
   });
 
   describe('signUp', () => {
-    const createUserDto: CreateUserDto = {
-      name: faker.person.fullName(),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      profilePicture: faker.internet.url(),
-      role: faker.helpers.arrayElement(Object.values(UserRoles)),
-    };
+    const createUserDto = generateFakeCreateUserDto();
 
     it('should call the create method of the UserService', async () => {
       const expectedResult: CreateUserDto = {
