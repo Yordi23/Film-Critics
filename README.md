@@ -4,7 +4,7 @@
 
 ## What's Film Critics?
 
-Film Critics is a platform dedicated to film enthusiasts, providing a space to express their honest opinions about their favorite, or not-so-favorite, films. Users can share ratings and interact with the communitys.
+Film Critics is a platform dedicated to film enthusiasts, providing a space to express their honest opinions about their favorite, or not-so-favorite, films. Users can share ratings and interact with the community.
 
 ### Core funcionalities
 
